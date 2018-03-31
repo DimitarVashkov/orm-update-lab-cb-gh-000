@@ -58,7 +58,7 @@ attr_accessor :name, :grade, :id
     sql = "SELECT * FROM students where name = ? LIMIT 1"
     DB[:conn].execute(sql, name).map do |row|
       self.new_from_db(row)
-    end
+    end.first
   end
 
   def self.create(name,grade)
