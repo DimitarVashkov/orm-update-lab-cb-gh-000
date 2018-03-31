@@ -33,6 +33,9 @@ attr_reader :id
   end
 
   def save
+    if @id
+      self.update
+    end
     sql = <<-SQL
     INSERT INTO students (name,grade) VALUES (?,?)
     SQL
@@ -45,6 +48,11 @@ attr_reader :id
     student = Student.new(row[1],row[2])
     student.id = row[0]
     student
+  end
+
+  def update
+    sql = "UPDATE songs SET name = ?, album = ? WHERE id = ?"
+   DB[:conn].execute(sql, self.name, self.album, self.id)
   end
 
 
