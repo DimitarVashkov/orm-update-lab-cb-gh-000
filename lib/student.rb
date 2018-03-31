@@ -9,6 +9,7 @@ attr_reader :id
   def initialize(name,grade)
     @name = name
     @grade = grade
+    @id = nil
   end
 
   def self.create_table
@@ -30,5 +31,8 @@ attr_reader :id
 
     DB[:conn].execute(sql)
   end
+
+
+
 
 end
